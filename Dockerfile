@@ -44,8 +44,7 @@ RUN apt-get update -y \
     sudo \
     virtualenv \
     xsltproc \
-    && \
-    apt-get clean
+    && apt-get clean
 
 RUN rm /etc/apt/apt.conf.d/docker-clean
 RUN mkdir /etc/ansible/
@@ -56,3 +55,9 @@ RUN pip install junit-xml
 ENV container=docker
 CMD ["/sbin/init"]
 
+RUN apt-get -y install build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools libqtcore4 libqt4-xml libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 libffi-dev libssl-dev python-dev \
+    && pip install --upgrade pip \
+    && pip install pytz \
+    && pip install shade \
+    && pip install ansible==2.1.2.0 \
+    && apt-get clean
